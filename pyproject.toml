@@ -1,0 +1,94 @@
+[project]
+name = "ghoststructure"
+version = "0.1.0"
+description = "Classic data structures in modern Python: typed, tested and documented, for learning and for real use."
+readme = "README.md"
+authors = [
+    { name = "Maxim Tokinlo", email = "yaovitokinlo13@gmail.com" },
+]
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+dependencies = []
+keywords = [
+    "data-structures",
+    "algorithms",
+    "linked-list",
+    "binary-search-tree",
+    "graph",
+    "hash-table",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Education",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Repository = "https://github.com/maximghost/ghoststructure"
+Issues = "https://github.com/maximghost/ghoststructure/issues"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.170.14",
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.3",
+]
+
+# ---------------------------------------------------------------- Ruff
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "F",    # Pyflakes: real bugs (undefined names, unused imports)
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "I",    # isort: import order
+    "B",    # flake8-bugbear: likely bugs and design problems
+    "UP",   # pyupgrade: modern Python syntax
+    "SIM",  # flake8-simplify: simpler equivalent code
+    "RUF",  # Ruff-specific rules
+    "PT",   # flake8-pytest-style: idiomatic tests
+    "D",    # pydocstyle: docstrings on public code
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]  # tests document themselves through their names
+
+# ---------------------------------------------------------------- mypy
+[tool.mypy]
+strict = true
+files = ["src", "tests"]
+
+# ---------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers", "--strict-config", "--cov", "--cov-report=term-missing"]
+
+# ---------------------------------------------------------------- coverage
+[tool.coverage.run]
+source = ["ghoststructure"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true

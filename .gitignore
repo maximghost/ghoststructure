@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Environnement et outils
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# Fichiers générés
+dist/
+build/
+*.egg-info/
